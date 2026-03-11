@@ -209,6 +209,10 @@ class MilvusClientWrapper:
                     "x-milvus-db / X_MILVUS_DB_ENV_VAR to 'default'."
                 ) from e
             raise
+        except Exception as e:
+            logger.warning("Milvus Database Selection failed: %s", e)
+            logger.warning("Will continue without using a database: %s", e)
+
 
     def close(self) -> None:
         """Release the underlying client."""
